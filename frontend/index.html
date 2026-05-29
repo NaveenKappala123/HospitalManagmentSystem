@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care32  Hospital - Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <div class="home-container">
+            <div class="navbar">
+                <h1 class="logo">🏥 Care32  Hospital</h1>
+                <nav class="nav-links">
+                    <a href="#" onclick="goToLogin()">Login</a>
+                </nav>
+            </div>
+            <div class="hero">
+                <h1>Welcome to Care32  Hospital</h1>
+                <p>Your trusted partner in healthcare management</p>
+            </div>
+            <div class="services">
+                <h2>Our Services</h2>
+                <div class="service-cards">
+                    <div class="card">
+                        <h3>👨‍⚕️ Doctor Consultation</h3>
+                        <p>Expert medical consultations available 24/7</p>
+                    </div>
+                    <div class="card">
+                        <h3>📅 Appointment Booking</h3>
+                        <p>Easy online booking system for your convenience</p>
+                    </div>
+                    <div class="card">
+                        <h3>🔬 Diagnostic Services</h3>
+                        <p>Advanced laboratory and imaging facilities</p>
+                    </div>
+                    <div class="card">
+                        <h3>🚨 Emergency Care</h3>
+                        <p>24/7 emergency medical services</p>
+                    </div>
+                </div>
+            </div>
+            <button class="cta-btn" onclick="goToLogin()">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Login Selection Page -->
+    <div id="loginSelectionPage" class="page">
+        <div class="login-selection-container">
+            <div class="back-btn" onclick="goToHome()">← Back</div>
+            <h2>Select Login Type</h2>
+            <div class="login-options">
+                <div class="login-option" onclick="showPatientLogin()">
+                    <div class="icon">👤</div>
+                    <h3>Patient Login</h3>
+                    <p>Book appointments and manage health records</p>
+                </div>
+                <div class="login-option" onclick="showDoctorLogin()">
+                    <div class="icon">👨‍⚕️</div>
+                    <h3>Doctor Login</h3>
+                    <p>Manage appointments and patient records</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Login Page -->
+    <div id="patientLoginPage" class="page">
+        <div class="form-container">
+            <div class="back-btn" onclick="backToLoginSelection()">← Back</div>
+            <h2>Patient Login</h2>
+            <form onsubmit="patientLoginHandler(event)">
+                <div class="form-group">
+                    <label for="patientEmail">Email:</label>
+                    <input type="email" id="patientEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="patientPassword">Password:</label>
+                    <input type="password" id="patientPassword" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="#" onclick="showPatientSignup()">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Doctor Login Page -->
+    <div id="doctorLoginPage" class="page">
+        <div class="form-container">
+            <div class="back-btn" onclick="backToLoginSelection()">← Back</div>
+            <h2>Doctor Login</h2>
+            <form onsubmit="doctorLoginHandler(event)">
+                <div class="form-group">
+                    <label for="doctorEmail">Email:</label>
+                    <input type="email" id="doctorEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="doctorPassword">Password:</label>
+                    <input type="password" id="doctorPassword" required placeholder="Enter your password">
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="#" onclick="showDoctorSignup()">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Patient Signup Page -->
+    <div id="patientSignupPage" class="page">
+        <div class="form-container">
+            <div class="back-btn" onclick="backToPatientLogin()">← Back</div>
+            <h2>Patient Registration</h2>
+            <form onsubmit="patientSignupHandler(event)">
+                <div class="form-group">
+                    <label for="patientName">Full Name:</label>
+                    <input type="text" id="patientName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="patientPhone">Phone:</label>
+                    <input type="tel" id="patientPhone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="patientDOB">Date of Birth:</label>
+                    <input type="date" id="patientDOB" required>
+                </div>
+                <div class="form-group">
+                    <label for="patientGender">Gender:</label>
+                    <select id="patientGender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="patientAge">Age:</label>
+                    <input type="number" id="patientAge" required min="0" placeholder="Enter your age">
+                </div>
+                <div class="form-group">
+                    <label for="patientSignupEmail">Email:</label>
+                    <input type="email" id="patientSignupEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="patientSignupPassword">Password:</label>
+                    <input type="password" id="patientSignupPassword" required placeholder="Create a password">
+                </div>
+                <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Doctor Signup Page -->
+    <div id="doctorSignupPage" class="page">
+        <div class="form-container">
+            <div class="back-btn" onclick="backToDoctorLogin()">← Back</div>
+            <h2>Doctor Registration</h2>
+            <form onsubmit="doctorSignupHandler(event)">
+                <div class="form-group">
+                    <label for="doctorName">Full Name:</label>
+                    <input type="text" id="doctorName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="doctorSpecialization">Specialization:</label>
+                    <select id="doctorSpecialization" required>
+                        <option value="">Select Specialization</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="General">General Medicine</option>
+                        <option value="Dermatology">Dermatology</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="doctorPhone">Phone:</label>
+                    <input type="tel" id="doctorPhone" required placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="doctorLicense">License Number:</label>
+                    <input type="text" id="doctorLicense" required placeholder="Enter your medical license number">
+                </div>
+                <div class="form-group">
+                    <label for="doctorSignupEmail">Email:</label>
+                    <input type="email" id="doctorSignupEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="doctorSignupPassword">Password:</label>
+                    <input type="password" id="doctorSignupPassword" required placeholder="Create a password">
+                </div>
+                <button type="submit" class="btn-primary">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Patient Dashboard -->
+    <div id="patientDashboard" class="page">
+        <div class="dashboard-container">
+            <div class="sidebar">
+                <div class="user-profile">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-info">
+                        <h3 id="patientNameDisplay">Patient Name</h3>
+                        <p>Patient ID: <span id="patientIDDisplay">P001</span></p>
+                        <p>Age: <span id="patientAgeDisplay">--</span></p>
+                        <p>Gender: <span id="patientGenderDisplay">--</span></p>
+                    </div>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="#" onclick="showDashboardHome()" class="nav-item active">Dashboard</a>
+                    <a href="#" onclick="showAppointmentBooking()" class="nav-item">Book Appointment</a>
+                    <a href="#" onclick="showMyAppointments()" class="nav-item">My Appointments</a>
+                    <a href="#" onclick="showHealthRecords()" class="nav-item">Health Records</a>
+                    <a href="#" onclick="logoutPatient()" class="nav-item logout">Logout</a>
+                </nav>
+            </div>
+            <div class="dashboard-content">
+                <!-- Dashboard Home -->
+                <div id="dashboardHome" class="content-section active">
+                    <h1>Welcome, <span id="patientWelcome">Patient</span>!</h1>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>🏥 Next Appointment</h3>
+                            <p id="nextAppointmentInfo">No upcoming appointments</p>
+                            <button onclick="showAppointmentBooking()" class="btn-secondary">Book Now</button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>📋 Total Appointments</h3>
+                            <p><span id="appointmentCount">0</span> appointments</p>
+                            <button onclick="showMyAppointments()" class="btn-secondary">View All</button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>👨‍⚕️ Available Doctors</h3>
+                            <p>Multiple specialists available</p>
+                            <button onclick="showAppointmentBooking()" class="btn-secondary">Schedule</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment Booking -->
+                <div id="appointmentBooking" class="content-section">
+                    <h1>Book an Appointment</h1>
+                    <form onsubmit="bookAppointmentHandler(event)">
+                        <div class="form-group">
+                            <label for="doctorSelect">Select Doctor:</label>
+                            <select id="doctorSelect" required onchange="loadDoctorDetails()">
+                                <option value="">Choose a doctor</option>
+                                <option value="1">Dr. K. Naveen - Cardiology</option>
+                                <option value="2">Dr. Sarah Johnson - Neurology</option>
+                                <option value="3">Dr. Michael Brown - Orthopedics</option>
+                                <option value="4">Dr. Emily Davis - Pediatrics</option>
+                                <option value="5">Dr. Robert Wilson - General Medicine</option>
+                                <option value="6">Dr. Lisa Anderson - Dermatology</option>
+                            </select>
+                        </div>
+
+                        <!-- Doctor Details Card -->
+                        <div id="doctorDetailsCard" class="doctor-details-card" style="display: none;">
+                            <h3>Doctor Details</h3>
+                            <div class="doctor-details-content">
+                                <div class="detail-row">
+                                    <label>Name:</label>
+                                    <span id="doctorDetailName">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <label>Specialization:</label>
+                                    <span id="doctorDetailSpecialization">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <label>Phone:</label>
+                                    <span id="doctorDetailPhone">-</span>
+                                </div>
+                                <div class="detail-row">
+                                    <label>Email:</label>
+                                    <span id="doctorDetailEmail">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentDate">Appointment Date:</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Book Appointment</button>
+                    </form>
+                </div>
+
+                <!-- My Appointments -->
+                <div id="myAppointments" class="content-section">
+                    <h1>My Appointments</h1>
+                    <div id="appointmentsList" class="appointments-list">
+                        <p class="no-data">No appointments yet. <a href="#" onclick="showAppointmentBooking()">Book one now</a></p>
+                    </div>
+                </div>
+
+                <!-- Health Records -->
+                <div id="healthRecords" class="content-section">
+                    <h1>Health Records</h1>
+                    <div id="recordsList" class="records-list">
+                        <p class="no-data">No health records available yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Doctor Dashboard -->
+    <div id="doctorDashboard" class="page">
+        <div class="dashboard-container">
+            <div class="sidebar">
+                <div class="user-profile">
+                    <div class="user-avatar">👨‍⚕️</div>
+                    <div class="user-info">
+                        <h3 id="doctorNameDisplay">Dr. Name</h3>
+                        <p id="doctorSpecializationDisplay">Specialization</p>
+                        <p>Doctor ID: <span id="doctorIDDisplay">D001</span></p>
+                    </div>
+                </div>
+                <nav class="sidebar-nav">
+                    <a href="#" onclick="showDoctorDashboardHome()" class="nav-item active">Dashboard</a>
+                    <a href="#" onclick="showDoctorAppointments()" class="nav-item">My Appointments</a>
+                    <a href="#" onclick="showDoctorSchedule()" class="nav-item">Schedule</a>
+                    <a href="#" onclick="showDoctorPatients()" class="nav-item">My Patients</a>
+                    <a href="#" onclick="showDoctorProfile()" class="nav-item">Profile</a>
+                    <a href="#" onclick="logoutDoctor()" class="nav-item logout">Logout</a>
+                </nav>
+            </div>
+            <div class="dashboard-content">
+                <!-- Doctor Dashboard Home -->
+                <div id="doctorDashboardHome" class="content-section active">
+                    <h1>Welcome, <span id="doctorWelcome">Doctor</span>!</h1>
+                    <div class="dashboard-cards">
+                        <div class="dashboard-card">
+                            <h3>📅 Today's Appointments</h3>
+                            <p><span id="todayAppointmentsCount">0</span> appointments scheduled</p>
+                            <button onclick="showDoctorAppointments()" class="btn-secondary">View All</button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>👥 Total Patients</h3>
+                            <p><span id="totalPatientsCount">0</span> patients registered</p>
+                            <button onclick="showDoctorPatients()" class="btn-secondary">Manage Patients</button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>⏰ Next Appointment</h3>
+                            <p id="nextDoctorAppointmentInfo">No upcoming appointments</p>
+                            <button onclick="showDoctorSchedule()" class="btn-secondary">View Schedule</button>
+                        </div>
+                        <div class="dashboard-card">
+                            <h3>📊 This Month</h3>
+                            <p><span id="monthlyAppointmentsCount">0</span> appointments completed</p>
+                            <button onclick="showDoctorAppointments()" class="btn-secondary">View History</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Appointments -->
+                <div id="doctorAppointments" class="content-section">
+                    <h1>My Appointments</h1>
+                    <div class="appointment-filters">
+                        <button onclick="filterAppointments('all')" class="filter-btn active" id="filterAll">All</button>
+                        <button onclick="filterAppointments('today')" class="filter-btn" id="filterToday">Today</button>
+                        <button onclick="filterAppointments('upcoming')" class="filter-btn" id="filterUpcoming">Upcoming</button>
+                        <button onclick="filterAppointments('completed')" class="filter-btn" id="filterCompleted">Completed</button>
+                    </div>
+                    <div id="doctorAppointmentsList" class="appointments-list">
+                        <p class="no-data">Loading appointments...</p>
+                    </div>
+                </div>
+
+                <!-- Doctor Schedule -->
+                <div id="doctorSchedule" class="content-section">
+                    <h1>My Schedule</h1>
+                    <div class="schedule-container">
+                        <div class="schedule-calendar">
+                            <h3>Weekly Schedule</h3>
+                            <div id="weeklySchedule" class="weekly-schedule">
+                                <div class="schedule-day">
+                                    <h4>Monday</h4>
+                                    <p>09:00 AM - 05:00 PM</p>
+                                </div>
+                                <div class="schedule-day">
+                                    <h4>Tuesday</h4>
+                                    <p>09:00 AM - 05:00 PM</p>
+                                </div>
+                                <div class="schedule-day">
+                                    <h4>Wednesday</h4>
+                                    <p>09:00 AM - 05:00 PM</p>
+                                </div>
+                                <div class="schedule-day">
+                                    <h4>Thursday</h4>
+                                    <p>09:00 AM - 05:00 PM</p>
+                                </div>
+                                <div class="schedule-day">
+                                    <h4>Friday</h4>
+                                    <p>09:00 AM - 05:00 PM</p>
+                                </div>
+                                <div class="schedule-day off">
+                                    <h4>Saturday</h4>
+                                    <p>Closed</p>
+                                </div>
+                                <div class="schedule-day off">
+                                    <h4>Sunday</h4>
+                                    <p>Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="schedule-availability">
+                            <h3>Availability Settings</h3>
+                            <form onsubmit="updateDoctorSchedule(event)">
+                                <div class="form-group">
+                                    <label for="workingDays">Working Days:</label>
+                                    <select id="workingDays" multiple>
+                                        <option value="monday">Monday</option>
+                                        <option value="tuesday">Tuesday</option>
+                                        <option value="wednesday">Wednesday</option>
+                                        <option value="thursday">Thursday</option>
+                                        <option value="friday">Friday</option>
+                                        <option value="saturday">Saturday</option>
+                                        <option value="sunday">Sunday</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="startTime">Start Time:</label>
+                                    <input type="time" id="startTime" value="09:00">
+                                </div>
+                                <div class="form-group">
+                                    <label for="endTime">End Time:</label>
+                                    <input type="time" id="endTime" value="17:00">
+                                </div>
+                                <button type="submit" class="btn-primary">Update Schedule</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor Patients -->
+                <div id="doctorPatients" class="content-section">
+                    <h1>My Patients</h1>
+                    <div class="search-container">
+                        <input type="text" id="patientSearch" placeholder="Search patients..." onkeyup="searchPatients()">
+                    </div>
+                    <div id="doctorPatientsList" class="patients-list">
+                        <p class="no-data">Loading patients...</p>
+                    </div>
+                </div>
+
+                <!-- Doctor Profile -->
+                <div id="doctorProfile" class="content-section">
+                    <h1>My Profile</h1>
+                    <div class="profile-container">
+                        <div class="profile-info">
+                            <h3>Personal Information</h3>
+                            <form onsubmit="updateDoctorProfile(event)">
+                                <div class="form-group">
+                                    <label for="profileName">Full Name:</label>
+                                    <input type="text" id="profileName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email:</label>
+                                    <input type="email" id="profileEmail" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePhone">Phone:</label>
+                                    <input type="tel" id="profilePhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileSpecialization">Specialization:</label>
+                                    <input type="text" id="profileSpecialization" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileLicense">License Number:</label>
+                                    <input type="text" id="profileLicense" required readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileBio">Bio:</label>
+                                    <textarea id="profileBio" rows="4" placeholder="Tell patients about yourself..."></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary">Update Profile</button>
+                            </form>
+                        </div>
+                        <div class="profile-stats">
+                            <h3>Statistics</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <h4>Total Appointments</h4>
+                                    <p id="statTotalAppointments">0</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h4>Active Patients</h4>
+                                    <p id="statActivePatients">0</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h4>Years of Experience</h4>
+                                    <p id="statExperience">0</p>
+                                </div>
+                                <div class="stat-item">
+                                    <h4>Rating</h4>
+                                    <p id="statRating">⭐ 4.8</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
