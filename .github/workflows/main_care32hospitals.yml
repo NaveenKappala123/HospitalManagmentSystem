@@ -25,7 +25,7 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
-        working-directory: Backend
+        working-directory: ./Backend
         run: mvn clean install -DskipTes
 
       - name: Upload artifact for deployment job
