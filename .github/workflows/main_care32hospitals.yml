@@ -26,13 +26,14 @@ jobs:
 
       - name: Build with Maven
         working-directory: ./Backend
-        run: mvn clean install -DskipTes
+        run: mvn clean install -DskipTests
+       
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/Backend/target/*.jar'
+          path: Backend/target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
